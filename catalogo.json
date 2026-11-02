@@ -1,12 +1,60 @@
-{
-  "id": "Thunder3",
-  "nome": "Thunder 3",
-  "ano": 2026,
-  "status": "Em exibição",
-  "episodios": [
-    {
-      "numero": 12,
-      "link": "https://t.me/c/3960437689/4"
-    }
-  ]
-}
+[
+  {
+    "nome": "Thunder 3",
+    "tag": "Thunder3",
+    "ano": "2026",
+    "status": "Em Exibição",
+    "capa": "https://picsum.photos/300/450",
+    "sinopse": "Pyontaro é um estudante do ensino fundamental cuja irmãzinha Futaba é sugada para outro universo. Junto dos amigos, ele inicia uma jornada para encontrá-la.",
+    "episodios": [
+      {
+        "numero": 1,
+        "link": "https://t.me/c/3960437689/5"
+      },
+      {
+        "numero": 2,
+        "link": "https://t.me/c/3960437689/6"
+      },
+      {
+        "numero": 3,
+        "link": "https://t.me/c/3960437689/7"
+      },
+      {
+        "numero": 4,
+        "link": "https://t.me/c/3960437689/8"
+      },
+      {
+        "numero": 5,
+        "link": "https://t.me/c/3960437689/9"
+      },
+      {
+        "numero": 6,
+        "link": "https://t.me/c/3960437689/10"
+      },
+      {
+        "numero": 7,
+        "link": "https://t.me/c/3960437689/11"
+      },
+      {
+        "numero": 8,
+        "link": "https://t.me/c/3960437689/12"
+      },
+      {
+        "numero": 9,
+        "link": "https://t.me/c/3960437689/13"
+      },
+      {
+        "numero": 10,
+        "link": "https://t.me/c/3960437689/14"
+      },
+      {
+        "numero": 11,
+        "link": "https://t.me/c/3960437689/15"
+      },
+      {
+        "numero": 12,
+        "link": "https://t.me/c/3960437689/16"
+      }
+    ]
+  }
+]
