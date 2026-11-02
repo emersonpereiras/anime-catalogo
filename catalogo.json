@@ -1,26 +1,12 @@
-[
-  {
-    "nome": "Naruto",
-    "capa": "https://cdn.myanimelist.net/images/anime/13/17405.jpg",
-    "episodios": [
-      {
-        "numero": 1,
-        "link": "https://t.me/seucanal/123"
-      },
-      {
-        "numero": 2,
-        "link": "https://t.me/seucanal/124"
-      }
-    ]
-  },
-  {
-    "nome": "One Piece",
-    "capa": "https://cdn.myanimelist.net/images/anime/6/73245.jpg",
-    "episodios": [
-      {
-        "numero": 1,
-        "link": "https://t.me/seucanal/200"
-      }
-    ]
-  }
-]
+{
+  "id": "Thunder3",
+  "nome": "Thunder 3",
+  "ano": 2026,
+  "status": "Em exibição",
+  "episodios": [
+    {
+      "numero": 12,
+      "link": "https://t.me/c/3960437689/4"
+    }
+  ]
+}
