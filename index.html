@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animes</title>
+<title>Catálogo de Animes</title>
 
 <style>
 body{
-    background:#111;
+    background:#121212;
     color:white;
-    font-family:Arial;
+    font-family:Arial,sans-serif;
     margin:20px;
 }
 
@@ -17,49 +17,124 @@ h1{
     text-align:center;
 }
 
+#busca{
+    width:100%;
+    max-width:500px;
+    display:block;
+    margin:20px auto;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    font-size:16px;
+}
+
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
     gap:20px;
 }
 
 .card{
     background:#222;
     border-radius:10px;
-    padding:10px;
+    overflow:hidden;
 }
 
 .card img{
     width:100%;
-    border-radius:10px;
+    height:260px;
+    object-fit:cover;
 }
 
-a{
-    color:#00bfff;
-    text-decoration:none;
+.card h3{
+    padding:10px;
+    margin:0;
+}
+
+.card button{
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#0088cc;
+    color:white;
+    cursor:pointer;
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <h1>📺 Catálogo de Animes</h1>
 
-<div class="grid">
+<input
+type="text"
+id="busca"
+placeholder="Pesquisar anime..."
+>
 
+<div id="catalogo" class="grid"></div>
+
+<script>
+
+const animes = [
+{
+nome:"Naruto",
+capa:"https://picsum.photos/300/450?1",
+link:"https://t.me/seucanal/123"
+},
+{
+nome:"One Piece",
+capa:"https://picsum.photos/300/450?2",
+link:"https://t.me/seucanal/456"
+},
+{
+nome:"Bleach",
+capa:"https://picsum.photos/300/450?3",
+link:"https://t.me/seucanal/789"
+}
+];
+
+const catalogo = document.getElementById("catalogo");
+
+function render(lista){
+
+catalogo.innerHTML="";
+
+lista.forEach(anime=>{
+
+catalogo.innerHTML += `
 <div class="card">
-<img src="https://via.placeholder.com/300x450">
-<h3>Naruto</h3>
-<a href="naruto.html">Ver Episódios</a>
-</div>
+<img src="${anime.capa}">
+<h3>${anime.nome}</h3>
 
-<div class="card">
-<img src="https://via.placeholder.com/300x450">
-<h3>One Piece</h3>
-<a href="onepiece.html">Ver Episódios</a>
-</div>
+<button onclick="window.open('${anime.link}')">
+Assistir
+</button>
 
 </div>
+`;
+
+});
+
+}
+
+render(animes);
+
+document
+.getElementById("busca")
+.addEventListener("input",e=>{
+
+const texto=e.target.value.toLowerCase();
+
+const resultado=animes.filter(a=>
+a.nome.toLowerCase().includes(texto)
+);
+
+render(resultado);
+
+});
+
+</script>
 
 </body>
 </html>
