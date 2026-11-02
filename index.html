@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animes</title>
+
+<style>
+body{
+    background:#111;
+    color:white;
+    font-family:Arial;
+    margin:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:#222;
+    border-radius:10px;
+    padding:10px;
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
+}
+
+a{
+    color:#00bfff;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📺 Catálogo de Animes</h1>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://via.placeholder.com/300x450">
+<h3>Naruto</h3>
+<a href="naruto.html">Ver Episódios</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/300x450">
+<h3>One Piece</h3>
+<a href="onepiece.html">Ver Episódios</a>
+</div>
+
+</div>
+
+</body>
+</html>
