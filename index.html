@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catálogo de Animes</title>
+
+<title>Anime App</title>
 
 <style>
+
 body{
+    margin:0;
+    padding:20px;
     background:#121212;
     color:white;
     font-family:Arial,sans-serif;
-    margin:20px;
 }
 
 h1{
@@ -22,115 +25,186 @@ h1{
     max-width:500px;
     display:block;
     margin:20px auto;
-    padding:10px;
+    padding:12px;
     border-radius:8px;
     border:none;
-    font-size:16px;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
     gap:20px;
 }
 
 .card{
-    background:#222;
-    border-radius:10px;
+    background:#1e1e1e;
+    border-radius:12px;
     overflow:hidden;
+    cursor:pointer;
 }
 
 .card img{
     width:100%;
-    height:260px;
+    height:320px;
     object-fit:cover;
 }
 
 .card h3{
-    padding:10px;
-    margin:0;
+    margin:10px;
 }
 
-.card button{
-    width:100%;
+.card p{
+    margin:10px;
+    color:#aaa;
+}
+
+#detalhes{
+    display:none;
+}
+
+.ep{
+    display:block;
+    margin:8px 0;
     padding:10px;
-    border:none;
     background:#0088cc;
     color:white;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+button{
+    padding:10px 15px;
+    border:none;
+    background:#444;
+    color:white;
+    border-radius:6px;
     cursor:pointer;
 }
-</style>
 
+</style>
 </head>
 <body>
 
-<h1>📺 Catálogo de Animes</h1>
+<h1>📺 Anime App</h1>
 
 <input
-type="text"
 id="busca"
-placeholder="Pesquisar anime..."
+placeholder="Pesquisar Anime..."
 >
 
-<div id="catalogo" class="grid"></div>
+<div id="lista" class="grid"></div>
+
+<div id="detalhes"></div>
 
 <script>
 
-const animes = [
-{
-nome:"Naruto",
-capa:"https://picsum.photos/300/450?1",
-link:"https://t.me/seucanal/123"
-},
-{
-nome:"One Piece",
-capa:"https://picsum.photos/300/450?2",
-link:"https://t.me/seucanal/456"
-},
-{
-nome:"Bleach",
-capa:"https://picsum.photos/300/450?3",
-link:"https://t.me/seucanal/789"
-}
-];
+let catalogo=[];
 
-const catalogo = document.getElementById("catalogo");
+fetch('catalogo.json')
+.then(r=>r.json())
+.then(data=>{
 
-function render(lista){
+catalogo=data;
 
-catalogo.innerHTML="";
+renderizar(data);
+
+});
+
+function renderizar(lista){
+
+const container=document.getElementById("lista");
+
+container.innerHTML='';
 
 lista.forEach(anime=>{
 
-catalogo.innerHTML += `
-<div class="card">
+container.innerHTML+=`
+
+<div class="card"
+onclick="abrirAnime('${anime.tag}')">
+
 <img src="${anime.capa}">
+
 <h3>${anime.nome}</h3>
 
-<button onclick="window.open('${anime.link}')">
-Assistir
-</button>
+<p>${anime.status}</p>
 
 </div>
+
 `;
 
 });
 
 }
 
-render(animes);
+function abrirAnime(tag){
+
+const anime=catalogo.find(a=>a.tag===tag);
+
+document.getElementById("lista").style.display="none";
+
+const detalhes=document.getElementById("detalhes");
+
+detalhes.style.display="block";
+
+let html=`
+
+<button onclick="voltar()">
+⬅ Voltar
+</button>
+
+<h2>${anime.nome}</h2>
+
+<img
+src="${anime.capa}"
+style="width:250px;border-radius:10px;"
+>
+
+<p>${anime.sinopse}</p>
+
+<h3>Episódios</h3>
+
+`;
+
+anime.episodios.forEach(ep=>{
+
+html+=`
+
+<a
+class="ep"
+href="${ep.link}"
+target="_blank"
+>
+▶ Episódio ${ep.numero}
+</a>
+
+`;
+
+});
+
+detalhes.innerHTML=html;
+
+}
+
+function voltar(){
+
+document.getElementById("detalhes").style.display="none";
+
+document.getElementById("lista").style.display="grid";
+
+}
 
 document
 .getElementById("busca")
 .addEventListener("input",e=>{
 
-const texto=e.target.value.toLowerCase();
+let termo=e.target.value.toLowerCase();
 
-const resultado=animes.filter(a=>
-a.nome.toLowerCase().includes(texto)
+let resultado=catalogo.filter(anime=>
+anime.nome.toLowerCase().includes(termo)
 );
 
-render(resultado);
+renderizar(resultado);
 
 });
 
